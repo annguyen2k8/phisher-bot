@@ -18,7 +18,7 @@ class ExampleCog(commands.Cog):
 
     @commands.hybrid_command(description="Check latency from the bot to discord.com")
     async def ping(self, ctx:commands.Context) -> None:
-        await ctx.send(f"pong! {round(self.bot.latency*1000)}ms")
+        await ctx.reply(f"Pong! {round(self.bot.latency*1000)}ms")
     
     @commands.hybrid_command(description="Only owner use.")
     @commands.is_owner()

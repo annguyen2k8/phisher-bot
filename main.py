@@ -31,7 +31,7 @@ class Bot(commands.Bot):
         self.logger = set_logger(self)
         
     async def setup_hook(self) -> None:
-        self.loop.create_task(self.load_cogs())    
+        self.loop.create_task(self.load_cogs())     
 
     async def load_cogs(self) -> None:
         """
@@ -57,6 +57,9 @@ class Bot(commands.Bot):
                     self.logger.exception(e)
                     await asyncio.sleep(5)
         
+        await self.sync_commands()
+    
+    async def sync_commands(self) -> None:
         try:
             sync = await self.tree.sync()
             self.logger.info(f"Total {len(sync)} slash commands, {len(self.commands)} normal commands")
@@ -68,24 +71,20 @@ class Bot(commands.Bot):
         elapsed_time = now - self.start_time
         self.logger.info(f"Logged bot's {self.user} (ID: {self.application.id})")
         self.logger.info(f"Took {round(elapsed_time.total_seconds()*1000)}ms to start")
-    
-    async def on_message(self, message:discord.Message):
-        return
 
     async def on_command_error(self, ctx:commands.Context, error:commands.errors.CommandError):
         if isinstance(error, commands.MissingPermissions):
             return await ctx.send("You don't have permission to use this command")
         self.logger.exception(error)
         
-        owner = self.application.owner
-        channel = await owner.create_dm()
-        await channel.send(
-            f"{box(traceback.format_exc)}" + \
-            f"User: {ctx.author}" + \
-            f"Content: {ctx.message.content}" + \
-            f"Args: {error.args}"
-            )
-        
+        # owner = self.application.owner
+        # channel = await owner.create_dm()
+        # await channel.send(
+        #     f"{box(traceback.format_exc)}" + \
+        #     f"User: {ctx.author}" + \
+        #     f"Content: {ctx.message.content}" + \
+        #     f"Args: {error.args}"
+        #     )
 
 def set_logger(bot:commands.Bot) -> Logger:
     logger = logging.getLogger()
