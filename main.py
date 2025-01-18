@@ -47,7 +47,7 @@ class Bot(commands.Bot):
             success = False
             while not success:
                 try:
-                    await self.load_extension(f'cogs.{cog_name}.{cog_name}')
+                    await self.load_extension(f'cogs.{cog_name}.main')
                     loaded_cogs.append(cog_name)
                     self.logger.info(f"Loaded {cog_name}'s cog")
                     success = True
@@ -74,7 +74,8 @@ class Bot(commands.Bot):
 
     async def on_command_error(self, ctx:commands.Context, error:commands.errors.CommandError):
         if isinstance(error, commands.MissingPermissions):
-            return await ctx.send("You don't have permission to use this command")
+            missing_perms = ', '.join(error.missing_permissions)
+            await ctx.send(f"You are missing the following permission(s) to use this command: `{missing_perms}`.")
         self.logger.exception(error)
         
         # owner = self.application.owner
@@ -86,7 +87,7 @@ class Bot(commands.Bot):
         #     f"Args: {error.args}"
         #     )
 
-def set_logger(bot:commands.Bot) -> Logger:
+def set_logger(bot: commands.Bot) -> Logger:
     logger = logging.getLogger()
     logger.setLevel(logging.INFO)
     

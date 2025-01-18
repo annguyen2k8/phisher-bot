@@ -2,18 +2,18 @@ def bold(text:str) -> str:
     return "**{}**".format(text)
 
 
-def box(text:str, lang="") -> str:
+def box(text: str, lang="") -> str:
     return "```{}\n{}\n```".format(lang, text)
 
 
-def inline(text:str) -> str:
+def inline(text: str) -> str:
     return "`{}`".format(text)
 
 
-def italics(text:str) -> str:
+def italics(text: str) -> str:
     return "*{}*".format(text)
 
-def strikethrough(text:str) -> str:
+def strikethrough(text: str) -> str:
     return "~~{}~~".format(text)
 
 
