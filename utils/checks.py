@@ -56,3 +56,13 @@ def admin_or_permissions(**perms):
     async def predicate(ctx:commands.Context):
         return await check_guild_permissions(ctx, perms, check=any)
     return commands.check(predicate)
+
+def is_dm():
+    async def predicate(ctx):
+        return isinstance(ctx.channel, discord.DMChannel)
+    return commands.check(predicate)
+
+def is_not_dm():
+    async def predicate(ctx):
+        return not isinstance(ctx.channel, discord.DMChannel)
+    return commands.check(predicate)

@@ -20,7 +20,7 @@ def strikethrough(text: str) -> str:
 def underline(text:str) -> str:
     return "__{}__".format(text)
 
-def escape(text, *, mass_mentions=False, formatting=False) -> str:
+def escape(text, *, mass_mentions=False, formatting=True) -> str:
     if mass_mentions:
         text = text.replace("@everyone", "@\u200beveryone")
         text = text.replace("@here", "@\u200bhere")
