@@ -35,6 +35,7 @@ class Bot(commands.Bot):
         self.config = Config(self.db)
         
     async def setup_hook(self) -> None:
+        await self.config.create_table()
         self.loop.create_task(self.load_cogs())     
 
     async def load_cogs(self) -> None:

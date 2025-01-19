@@ -6,8 +6,8 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 
+import base
 from utils.checks import *
-
 from utils.formating import *
 
 # def get_uuid_from_username(username:str) -> str:
@@ -102,9 +102,10 @@ class SendEmbedForm(discord.ui.Modal, title="Send Embed"):
         max_length=4000
     )
     
-    def __init__(self, bot: commands.Bot, *, title = ..., timeout = None, custom_id = ...):
+    def __init__(self, bot: base.Bot, *, title = ..., timeout = None, custom_id = ...):
         super().__init__(title=title, timeout=timeout, custom_id=custom_id)
         self.bot = bot
+        
     
     async def on_submit(self, interaction: discord.Interaction) -> None:
         
@@ -139,9 +140,7 @@ class ConfirmButtonView(discord.ui.View):
 class FishingMC(commands.Cog):
     def __init__(self, bot:commands.Bot) -> None:
         self.bot = bot
-        self.apikey = bot.config['apikey'].get('hypixel', None)
-        
-        
+        # self.apikey = bot.config['apikey'].get('hypixel', None)
         
         self.bot.add_view(VerifyButtonView())
         self.bot.add_view(ConfirmButtonView())
@@ -152,5 +151,5 @@ class FishingMC(commands.Cog):
         await interaction.response.defer("**Submmiting embed...**")
         await interaction.response.send_modal(SendEmbedForm(self))
 
-async def setup(bot:commands.Bot) -> None:
+async def setup(bot:base.Bot) -> None:
     await bot.add_cog(FishingMC(bot))
