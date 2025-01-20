@@ -16,7 +16,6 @@ from discord.ext import commands
 
 from utils.formating import *
 from modules.ext import *
-from modules.config_func import *
 
 class Bot(commands.Bot):
     def __init__(self, **kwargs) -> None:
@@ -32,11 +31,11 @@ class Bot(commands.Bot):
         self.logger = set_logger(self)
         
         self.db = Database('database.db')
-        self.config = Config(self.db)
+        
+        
         
     async def setup_hook(self) -> None:
-        await self.config.create_table()
-        self.loop.create_task(self.load_cogs())     
+        self.loop.create_task(self.load_cogs())    
 
     async def load_cogs(self) -> None:
         """

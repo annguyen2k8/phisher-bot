@@ -1,4 +1,3 @@
-from typing import Tuple
 from modules.ext import BaseTable
 
 class Config(BaseTable):

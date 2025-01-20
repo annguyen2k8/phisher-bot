@@ -6,10 +6,10 @@ from discord.ext import commands
 from discord.utils import oauth_url
 
 from utils.formating import *
-
+import base
 
 class ExampleCog(commands.Cog):
-    def __init__(self, bot:commands.Bot) -> None:
+    def __init__(self, bot:base.Bot) -> None:
         self.bot = bot
     
     @property
@@ -31,5 +31,5 @@ class ExampleCog(commands.Cog):
     async def get_uptime(self, ctx: commands.Context) -> None:
         await ctx.reply(f"**Uptime:** {format_time(self.uptime)}")
     
-async def setup(bot: commands.Bot) -> None:
+async def setup(bot: base.Bot) -> None:
     await bot.add_cog(ExampleCog(bot))
